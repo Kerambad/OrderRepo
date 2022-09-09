@@ -37,21 +37,21 @@ public class ProductsAndOrders {
         Product product2 = new Product(2, "TV");
         Product product3 = new Product(3, "Laptop");
 
-        Map<Integer, Product> products = new HashMap<>();
-        products.put(product2.getProductId(), product2);
-        products.put(product3.getProductId(), product3);
+        Map<Integer, Product> products1 = new HashMap<>();
+        products1.put(product2.getProductId(), product2);
+        products1.put(product3.getProductId(), product3);
 
-        Order order1 = new Order(1,products);
+        Order order1 = new Order(1,products1);
 
         //Order 2
-        products.clear();
+        Map<Integer, Product> products2 = new HashMap<>();
         Product product6 = new Product(6, "Fridge");
         Product product7 = new Product(7, "Webcam");
 
-        products.put(product6.getProductId(), product6);
-        products.put(product7.getProductId(), product7);
+        products2.put(product6.getProductId(), product6);
+        products2.put(product7.getProductId(), product7);
 
-        Order order2 = new Order(2,products);
+        Order order2 = new Order(2,products2);
 
         //Put together
         Map <Integer,Order> allOrders = new HashMap<>();

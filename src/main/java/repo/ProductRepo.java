@@ -5,10 +5,13 @@ import java.util.Map;
 
 public class ProductRepo {
 
-    private Map<Integer,Product> products = new HashMap<>();
+    private Map<Integer,Product> products;
 
     public ProductRepo(Map<Integer, Product> products) {
         this.products = products;
+    }
+
+    public ProductRepo() {
     }
 
     public Product getProduct(int id) {

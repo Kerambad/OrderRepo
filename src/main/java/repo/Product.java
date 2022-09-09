@@ -12,6 +12,9 @@ public class Product {
         this.productName = name;
     }
 
+    public Product() {
+    }
+
     public int getProductId() {
         return productId;
     }
@@ -30,10 +33,8 @@ public class Product {
 
     @Override
     public String toString() {
-        return "Product{" +
-                "id=" + productId +
-                ", name='" + productName + '\'' +
-                '}';
+        return "Product-id: " + productId +
+                " name: " + productName + '\n';
     }
 
     @Override

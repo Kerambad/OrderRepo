@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class OrderRepo {
-    private Map<Integer,Order> orders = new HashMap<>();
+    private Map<Integer,Order> orders;
 
     public OrderRepo(Map<Integer, Order> orders) {
         this.orders = orders;
@@ -18,14 +18,14 @@ public class OrderRepo {
         return orders.get(id);
     }
 
-    public Order add(int id, Product[] products) {
+    public Order add(Product[] productsToAdd) {
+            Map<Integer,Product> getsAddedToOrder = new HashMap<>();
+            for(Product product : productsToAdd) {
+                getsAddedToOrder.put(product.getProductId(), product);
+            }
+            Order orderToAdd = new Order(orders.size() + 1,getsAddedToOrder);
+            orders.put(orderToAdd.getOrderId(), orderToAdd);
 
-        Map<Integer,Product> productsToAdd = new HashMap<>();
-        for (Product product : products) {
-            productsToAdd.put(product.getProductId(), product);
-        }
-        Order toAdd = new Order(id, productsToAdd);
-        orders.put(id, toAdd);
-        return toAdd;
+        return orderToAdd;
     }
 }
