@@ -4,35 +4,35 @@ package repo;
 import java.util.Objects;
 
 public class Product {
-    private int id;
-    private String name;
+    private int productId;
+    private String productName;
 
     public Product(int id, String name) {
-        this.id = id;
-        this.name = name;
+        this.productId = id;
+        this.productName = name;
     }
 
-    public int getId() {
-        return id;
+    public int getProductId() {
+        return productId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setProductId(int productId) {
+        this.productId = productId;
     }
 
-    public String getName() {
-        return name;
+    public String getProductName() {
+        return productName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setProductName(String productName) {
+        this.productName = productName;
     }
 
     @Override
     public String toString() {
         return "Product{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
+                "id=" + productId +
+                ", name='" + productName + '\'' +
                 '}';
     }
 
@@ -43,14 +43,14 @@ public class Product {
 
         Product product = (Product) o;
 
-        if (id != product.id) return false;
-        return Objects.equals(name, product.name);
+        if (productId != product.productId) return false;
+        return Objects.equals(productName, product.productName);
     }
 
     @Override
     public int hashCode() {
-        int result = id;
-        result = 31 * result + (name != null ? name.hashCode() : 0);
+        int result = productId;
+        result = 31 * result + (productName != null ? productName.hashCode() : 0);
         return result;
     }
 }
