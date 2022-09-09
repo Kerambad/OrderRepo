@@ -15,9 +15,6 @@ public class ProductRepo {
         return products.get(id);
     }
 
-    public ProductRepo() {
-    }
-
     public void setProducts(Map<Integer, Product> products) {
         this.products = products;
 

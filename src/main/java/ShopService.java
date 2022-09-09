@@ -1,11 +1,12 @@
+import Data.ProductsAndOrders;
 import repo.Order;
 import repo.OrderRepo;
 import repo.Product;
 import repo.ProductRepo;
 
 public class ShopService {
-    private OrderRepo orderAdministration = new OrderRepo();
-    private ProductRepo productAdministration = new ProductRepo();
+    private OrderRepo orderAdministration = new OrderRepo(ProductsAndOrders.initializeOrder());
+    private ProductRepo productAdministration = new ProductRepo(ProductsAndOrders.initializeProducts());
 
     public Product getProduct(int id) {
         return productAdministration.getProduct(id);

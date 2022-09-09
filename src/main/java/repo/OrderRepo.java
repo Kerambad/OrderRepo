@@ -10,9 +10,6 @@ public class OrderRepo {
         this.orders = orders;
     }
 
-    public OrderRepo() {
-    }
-
     public void list() {
         System.out.println(orders.values());
     }
@@ -24,8 +21,8 @@ public class OrderRepo {
     public Order add(int id, Product[] products) {
 
         Map<Integer,Product> productsToAdd = new HashMap<>();
-        for (int i = 0; i < products.length; i++) {
-            productsToAdd.put(products[i].getProductId(),products[i]);
+        for (Product product : products) {
+            productsToAdd.put(product.getProductId(), product);
         }
         Order toAdd = new Order(id, productsToAdd);
         orders.put(id, toAdd);
