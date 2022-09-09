@@ -10,6 +10,9 @@ public class OrderRepo {
         this.orders = orders;
     }
 
+    public OrderRepo() {
+    }
+
     public void list() {
         System.out.println(orders.values());
     }

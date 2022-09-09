@@ -25,7 +25,7 @@ public class ProductRepoTest {
 
     }
     @Test
-    void printSingleProductReturnsSingleProduct () {
+    void getProductReturnsShouldReturnProduct () {
         //GIVEN
         Product product1 = new Product(1,"Keyboard");
         Product product2 = new Product(2,"Mouse");
@@ -39,7 +39,7 @@ public class ProductRepoTest {
         int testId = 2;
 
         //WHEN
-        Product expected = testRepo.printSingleProduct(testId);
+        Product expected = testRepo.getProduct(testId);
         //THEN
         assertEquals(product2,expected);
 

@@ -11,8 +11,11 @@ public class ProductRepo {
         this.products = products;
     }
 
-    public Map<Integer, Product> getProducts() {
-        return products;
+    public Product getProduct(int id) {
+        return products.get(id);
+    }
+
+    public ProductRepo() {
     }
 
     public void setProducts(Map<Integer, Product> products) {
