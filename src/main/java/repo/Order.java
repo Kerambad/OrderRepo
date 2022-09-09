@@ -1,10 +1,17 @@
 package repo;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
 public class Order {
     private int orderId;
-    private Product product;
+    private Map<Integer,Product> product = new HashMap<>();
+
+    public Order(int orderId, Map<Integer, Product> product) {
+        this.orderId = orderId;
+        this.product = product;
+    }
 
     public int getOrderId() {
         return orderId;
@@ -14,19 +21,20 @@ public class Order {
         this.orderId = orderId;
     }
 
-    public Product getProduct() {
+    public Map<Integer, Product> getProduct() {
         return product;
     }
 
-    public void setProduct(Product product) {
+    public void setProduct(Map<Integer, Product> product) {
         this.product = product;
     }
 
-    public Order(int orderId, Product product) {
-        this.orderId = orderId;
-        this.product = product;
-
-
+    @Override
+    public String toString() {
+        return "Order{" +
+                "orderId=" + orderId +
+                ", product=" + product +
+                '}';
     }
 
     @Override
