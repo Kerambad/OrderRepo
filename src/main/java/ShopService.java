@@ -1,4 +1,4 @@
-import Data.ProductsAndOrders;
+
 import repo.Order;
 import repo.OrderRepo;
 import repo.Product;
@@ -27,10 +27,10 @@ public class ShopService {
     public void listProduct() {
         productAdministration.list();
     }
-    public Order addOrder(int id[]) {
+    public Order addOrder(int[] id) {
         Product[] productsToAdd = new Product[id.length];
         for (int j = 0; j < id.length; j++) {
-            productsToAdd[j] = productAdministration.getProduct(id[j]);
+            productsToAdd[j] = getProduct(id[j]);
         }
         return orderAdministration.add(productsToAdd);
     }

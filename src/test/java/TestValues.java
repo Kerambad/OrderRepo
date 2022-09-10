@@ -38,4 +38,9 @@ public class TestValues {
     static OrderRepo orderTestRepo () {
         return new OrderRepo(orderTestMap());
     }
+
+    //ShopService Values
+    static ShopService shopServiceTestRepo () {
+        return new ShopService(orderTestRepo(),productTestRepo());
+    }
 }

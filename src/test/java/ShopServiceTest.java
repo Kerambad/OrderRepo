@@ -1,9 +1,6 @@
 import org.junit.jupiter.api.Test;
 import repo.*;
 
-import java.io.FileNotFoundException;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.NoSuchElementException;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -13,7 +10,7 @@ public class ShopServiceTest {
     @Test
     void addOrderShouldReturnSuccessfulAddedOrder() {
         //GIVEN
-        ShopService shopServiceTest = generateShopServiceTestParas();
+        ShopService shopServiceTest = TestValues.shopServiceTestRepo();
         int[] testOrder = {1,2};
         //WHEN
         Order actual = shopServiceTest.addOrder(testOrder);
@@ -25,39 +22,53 @@ public class ShopServiceTest {
     @Test
     void addOrderShouldThrowExceptionBecauseProductNotExists() {
         //GIVEN
-        ShopService shopServiceTest = generateShopServiceTestParas();
+        ShopService shopServiceTest = TestValues.shopServiceTestRepo();
         int[] testOrder = {1,3};
+
+        //WHEN //THEN
+        assertThrows(NoSuchElementException.class, () -> shopServiceTest.addOrder(testOrder));
+    }
+    @Test
+    void getProductShouldThrowExceptionBecauseProductNotExists() {
+        //GIVEN
+        ShopService shopServiceTest = TestValues.shopServiceTestRepo();
+        int testProduct = 4;
+
+        //WHEN //THEN
+        assertThrows(NoSuchElementException.class, () -> shopServiceTest.getProduct(testProduct));
+    }
+
+    @Test
+    void getProductShouldReturnRequestedProduct() {
+        //GIVEN
+        ShopService shopServiceTest = TestValues.shopServiceTestRepo();
+        Product testProduct = TestValues.productTestProduct2();
+
         //WHEN
-        try {
-            Order actual = shopServiceTest.addOrder(testOrder);
-            fail();
-        }
-        //THEN
-        catch (NoSuchElementException e){}
-    }
-
-    private ShopService generateShopServiceTestParas() {
-        Product product1 = new Product(1, "Radio");
-        Product product2 = new Product(2, "TV");
-        Map<Integer, Product> products = new HashMap<>();
-        products.put(product1.getProductId(), product1);
-        products.put(product2.getProductId(), product2);
-
-        Order order1 = new Order(1, products);
-
-        //Put together
-        Map<Integer, Order> allOrders = new HashMap<>();
-        allOrders.put(order1.getOrderId(), order1);
-
-        ShopService init = new ShopService(new OrderRepo(allOrders), new ProductRepo(products));
-        return init;
+        Product actual = shopServiceTest.getProduct(2);
+        // THEN
+        assertEquals(testProduct, actual);
 
     }
 
-/*    @Test
-    void whenFileNotFoundExpectException_assertThrows() {
-        String fileName = "Dateiname";
-        //  assertThrows(Exception Klasse, <Eine Funktion ...>)
-        assertThrows(FileNotFoundException.class, () -> ExceptionsExample.readFile(fileName));
-    }*/
+    @Test
+    void getOrderShouldThrowExceptionBecauseOrderNotExists() {
+        //GIVEN
+        ShopService shopServiceTest = TestValues.shopServiceTestRepo();
+        int testOrder = 3;
+
+        //WHEN //THEN
+        assertThrows(NoSuchElementException.class, () -> shopServiceTest.getOrder(testOrder));
+    }
+    @Test
+    void getOrderShouldReturnRequestedOrder() {
+        //GIVEN
+        ShopService shopServiceTest = TestValues.shopServiceTestRepo();
+        Order testOrder = TestValues.orderTestOrder();
+
+        //WHEN
+        Order actual = shopServiceTest.getOrder(1);
+        // THEN
+        assertEquals(testOrder, actual);
+    }
 }
