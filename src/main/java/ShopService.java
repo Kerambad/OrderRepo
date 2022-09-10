@@ -16,7 +16,12 @@ public class ShopService {
     }
 
     public Product getProduct(int id) {
-        return productAdministration.getProduct(id);
+        if (productAdministration.getProduct(id) == null) {
+            throw new NoSuchElementException("Product not found");
+        }
+        else {
+            return productAdministration.getProduct(id);
+        }
     }
 
     public void listProduct() {
@@ -24,19 +29,19 @@ public class ShopService {
     }
     public Order addOrder(int id[]) {
         Product[] productsToAdd = new Product[id.length];
-        int i = 0;
-        for (int index : id) {
-            if (productAdministration.getProduct(index) == null) {
-                throw new NoSuchElementException("Product not found");
-            }
-            else {
-                productsToAdd[i++] = productAdministration.getProduct(index);
-            }
+        for (int j = 0; j < id.length; j++) {
+            productsToAdd[j] = productAdministration.getProduct(id[j]);
         }
         return orderAdministration.add(productsToAdd);
     }
-    public Order getOrder(int id) {
-        return orderAdministration.get(id);
+
+    public Order getOrder(int id){
+        if (orderAdministration.getOrder(id) == null) {
+            throw new NoSuchElementException("Order not found");
+        }
+        else {
+            return orderAdministration.getOrder(id);
+        }
     }
     public void listOrder() {
         orderAdministration.list();

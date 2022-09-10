@@ -14,7 +14,7 @@ public class OrderRepoTest {
     @Test
     void listPrintsAllOrdersAtConsole() {
         //GIVEN
-        OrderRepo orderrepo = generateOrderRepo();
+        OrderRepo orderrepo = TestValues.orderTestRepo();
 
         //WHEN
         orderrepo.list();
@@ -23,21 +23,10 @@ public class OrderRepoTest {
     @Test
     void getOrderShouldReturnOrderById() {
         //GIVEN
-        Product product1 = new Product(1,"Keyboard");
-        Product product2 = new Product(2,"Mouse");
-        Product[] productArrayToTest = {product1, product2};
-
-        Map<Integer, Product> products = new HashMap<>();
-        products.put(product1.getProductId(), product1);
-        products.put(product2.getProductId(), product2);
-
-        Order expected = new Order(1, products);
-        OrderRepo orderrepo = generateOrderRepo();
-
-
+        Order expected = TestValues.orderTestOrder();
+        OrderRepo orderrepo = TestValues.orderTestRepo();
         //WHEN
-        Order actual = orderrepo.get(1);
-
+        Order actual = orderrepo.getOrder(1);
         //THEN
         assertEquals(expected,actual);
 
@@ -45,17 +34,9 @@ public class OrderRepoTest {
     @Test
     void addOrderShouldReturnAddedOrder() {
         //GIVEN
-        Product product1 = new Product(1,"Keyboard");
-        Product product2 = new Product(2,"Mouse");
-        Product[] productArrayToTest = {product1, product2};
-
-        Map<Integer, Product> products = new HashMap<>();
-        products.put(product1.getProductId(), product1);
-        products.put(product2.getProductId(), product2);
-
-        Order expected = new Order(2, products);
-
-        OrderRepo repoToTest = generateOrderRepo();
+        Product[] productArrayToTest = {TestValues.productTestProduct1(), TestValues.productTestProduct2()};
+        Order expected = new Order(2, TestValues.productTestMap());
+        OrderRepo repoToTest = TestValues.orderTestRepo();
 
         //WHEN
         Order actual = repoToTest.add(productArrayToTest);
@@ -63,23 +44,6 @@ public class OrderRepoTest {
         //THEN
         assertEquals(expected,actual);
 
-    }
-
-    private OrderRepo generateOrderRepo() {
-        Product product1 = new Product(1,"Keyboard");
-        Product product2 = new Product(2,"Mouse");
-
-        Map<Integer, Product> products = new HashMap<>();
-        products.put(product1.getProductId(), product1);
-        products.put(product2.getProductId(), product2);
-
-        Order order1 = new Order(1, products);
-
-        Map<Integer, Order> orders = new HashMap<>();
-        orders.put(order1.getOrderId(),order1);
-
-        OrderRepo orderrepo = new OrderRepo(orders);
-        return orderrepo;
     }
 
 

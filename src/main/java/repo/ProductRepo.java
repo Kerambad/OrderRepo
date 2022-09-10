@@ -4,27 +4,19 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ProductRepo {
+    //Attributes
 
     private Map<Integer,Product> products;
 
+    //Constructor
+    public ProductRepo() {
+    }
     public ProductRepo(Map<Integer, Product> products) {
         this.products = products;
     }
 
-    public ProductRepo() {
-    }
-
+    //Methods
     public Product getProduct(int id) {
-        return products.get(id);
-    }
-
-    public void setProducts(Map<Integer, Product> products) {
-        this.products = products;
-
-    }
-
-    public Product printSingleProduct(int id) {
-        System.out.println(products.get(id));
         return products.get(id);
     }
 

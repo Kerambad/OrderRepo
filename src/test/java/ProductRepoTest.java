@@ -10,16 +10,8 @@ import static org.junit.jupiter.api.Assertions.*;
 public class ProductRepoTest {
     @Test
     void listPrintsAllProductsAtConsole () {
-        //GIVEN
-        Product product1 = new Product(1,"Keyboard");
-        Product product2 = new Product(2,"Mouse");
-
-        Map<Integer, Product> products = new HashMap<>();
-        products.put(product1.getProductId(), product1);
-        products.put(product2.getProductId(), product2);
-
-        ProductRepo testRepo = new ProductRepo(products);
-
+        //GIVEN;
+        ProductRepo testRepo = TestValues.productTestRepo();
         //WHEN //THEN
         testRepo.list();
 
@@ -27,21 +19,13 @@ public class ProductRepoTest {
     @Test
     void getProductReturnsShouldReturnProduct () {
         //GIVEN
-        Product product1 = new Product(1,"Keyboard");
-        Product product2 = new Product(2,"Mouse");
-
-        Map<Integer, Product> products = new HashMap<>();
-        products.put(product1.getProductId(), product1);
-        products.put(product2.getProductId(), product2);
-
-        ProductRepo testRepo = new ProductRepo(products);
-
-        int testId = 2;
+        ProductRepo testRepo = TestValues.productTestRepo();
+        int shouldReturnProductAtId = 2;
 
         //WHEN
-        Product expected = testRepo.getProduct(testId);
+        Product expected = testRepo.getProduct(shouldReturnProductAtId);
         //THEN
-        assertEquals(product2,expected);
+        assertEquals(TestValues.productTestProduct2(),expected);
 
     }
 

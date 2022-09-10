@@ -1,12 +1,12 @@
 import org.junit.jupiter.api.Test;
 import repo.*;
 
+import java.io.FileNotFoundException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.NoSuchElementException;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class ShopServiceTest {
 
@@ -53,4 +53,11 @@ public class ShopServiceTest {
         return init;
 
     }
+
+/*    @Test
+    void whenFileNotFoundExpectException_assertThrows() {
+        String fileName = "Dateiname";
+        //  assertThrows(Exception Klasse, <Eine Funktion ...>)
+        assertThrows(FileNotFoundException.class, () -> ExceptionsExample.readFile(fileName));
+    }*/
 }
