@@ -46,9 +46,25 @@ public class ProgramFlow {
         return 0;
     }
 
-    public static String intString(String message) {
+    public static String stringInput(String message) {
         Scanner string = new Scanner(System.in);
         System.out.print(message);
         return string.next();
     }
+
+    public static int[] intArrayInput(String message) {
+
+        String input = stringInput(message);
+        input = input.replace(" ","");
+        String[] arr = input.split(",");
+        int[]  output = new int[arr.length];
+
+        for (int i = 0; i < arr.length; i++) {
+            output[i] = Integer.parseInt(arr[i]);
+        }
+        return output;
+        }
+
+
+
 }
