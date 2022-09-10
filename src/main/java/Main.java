@@ -1,4 +1,5 @@
 import Data.ProductsAndOrders;
+import Program.ProgramFlow;
 import repo.OrderRepo;
 import repo.Product;
 import repo.ProductRepo;
@@ -9,30 +10,35 @@ public class Main {
 
     public static void main(String[] args) {
 
-
         ShopService shopService = new ShopService(new OrderRepo(ProductsAndOrders.initializeOrder()),new ProductRepo(ProductsAndOrders.initializeProducts()));
+        String[] menuOptions = {
+                "List all Products"
+                , "List all Orders"
+                , "Display Product"
+                , "Display Order"
+                , "Add New Order"
+        };
+        int option = ProgramFlow.menu(menuOptions);
 
-        Product add1 = new Product(7, "Webcam");
-        Product add2 = new Product(2, "TV");
-        Product[] addArray = {add1,add2};
-
-        System.out.println("New Order ID: "
-                + shopService.addOrder(new int[]{6, 7}).getOrderId());
-
-        System.out.println(shopService.getOrder(3));
-
-        System.out.println(shopService.getProduct(8));
-
-        try {
-            System.out.println(shopService.getOrder(10));
+        switch (option) {
+            case 0:
+                System.exit(0);
+                break;
+            case 1:
+                shopService.listProduct();
+                break;
+            case 2:
+                shopService.listOrder();
+            case 3:
+                shopService.getProduct(ProgramFlow.intInput("Enter Product Id: "));
+                break;
+            case 4:
+                shopService.getOrder(ProgramFlow.intInput("Enter Order Id: "));
+                break;
+            case 5:
+                //call addOrder
+                break;
         }
-        catch (NoSuchElementException NseeOrder) {
-            System.out.println(NseeOrder.getMessage());
-        }
-
-//        shopService.listOrder();
-//        shopService.listProduct();
-
-
+        main(null);
     }
 }
