@@ -1,13 +1,15 @@
 package repo;
 
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
 public class Order {
-    private int orderId;
-    private Map<Integer,Product> product = new HashMap<>();
 
+    //Attributes
+    private int orderId;
+    private Map<Integer,Product> product;
+
+    //Constructor
     public Order(int orderId, Map<Integer, Product> product) {
         this.orderId = orderId;
         this.product = product;
@@ -17,9 +19,7 @@ public class Order {
         return orderId;
     }
 
-    public void setOrderId(int orderId) {
-        this.orderId = orderId;
-    }
+    //Methods
 
     public Map<Integer, Product> getProduct() {
         return product;
